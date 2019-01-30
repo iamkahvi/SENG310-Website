@@ -54,10 +54,6 @@ class mainFrame(wx.Frame):
 #        panelTen = wx.Panel(self, pos=((0,468)), size=((618,50)))
 #        panelTen.SetBackgroundColour("White")
 
-        hourOne = wx.StaticText(panelOne, -1, "8:30-9:30", pos=(25, 70))
-        hourOne.SetForegroundColour("Black")
-        hourOne.SetBackgroundColour("Grey")
-
         greyPanel = wx.Panel(self, pos=(0,0), size=(100,575))
         greyPanel.SetBackgroundColour("Grey")
 
@@ -124,6 +120,9 @@ class mainFrame(wx.Frame):
         dayButton = wx.Button(panelOne, -1, "ECE 330\nECE A123", pos=(102,52), size=(98,50))
         dayButton.Bind(wx.EVT_BUTTON, onButtonDays)
         dayButton.SetBackgroundColour("Green")
+        dayButtonTwo = wx.Button(panelOne, -1, "SENG-310\nELL A168", pos=(202,139), size=(98,67))
+        dayButtonTwo.Bind(wx.EVT_BUTTON, onButtonDays)
+        dayButtonTwo.SetBackgroundColour("Green")
 
 #######################################################################
 # area for creating menus and attaching buttons the those menus
@@ -150,6 +149,38 @@ class mainFrame(wx.Frame):
 
         self.Bind(wx.EVT_MENU, self.quit, exitButton)
         self.Bind(wx.EVT_MENU, self.about, aboutButton)
+
+###################################################################
+# Area for static text in function GUI
+####################################################################
+
+        hourOne = wx.StaticText(panelOne, -1, "8:30-9:30", pos=(25, 70))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "9:30-10:30", pos=(25, 122))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "10:30-11:30", pos=(22, 174))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "11:30-12:30", pos=(22, 226))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "12:30-1:30", pos=(22, 278))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "1:30-2:30", pos=(25, 330))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "2:30-3:30", pos=(25, 382))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "3:30-4:30", pos=(25, 434))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
+        hourOne = wx.StaticText(panelOne, -1, "4:30-5:30", pos=(25, 486))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
 
 ####################################################################
 # Area for creating functions for Buttons for the class of mainFrame
