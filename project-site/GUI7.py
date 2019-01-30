@@ -11,29 +11,30 @@ class mainFrame(wx.Frame):
     def GUI(self):
 
 
-        panelOne = wx.Panel(self, pos=((0,0)), size=((618,50)))
+        panelOne = wx.Panel(self, pos=((0,0)), size=((618,575)))
         panelOne.SetBackgroundColour("White")
-        panelTwo = wx.Panel(self, pos=((0,52)), size=((618,50)))
-        panelTwo.SetBackgroundColour("White")
-        panelThree = wx.Panel(self, pos=((0,104)), size=((618,50)))
-        panelThree.SetBackgroundColour("White")
-        panelFour = wx.Panel(self, pos=((0,156)), size=((618,50)))
-        panelFour.SetBackgroundColour("White")
-        panelFive = wx.Panel(self, pos=((0,208)), size=((618,50)))
-        panelFive.SetBackgroundColour("White")
-        panelSix = wx.Panel(self, pos=((0,260)), size=((618,50)))
-        panelSix.SetBackgroundColour("White")
-        panelSeven = wx.Panel(self, pos=((0,312)), size=((618,50)))
-        panelSeven.SetBackgroundColour("White")
-        panelEight = wx.Panel(self, pos=((0,364)), size=((618,50)))
-        panelEight.SetBackgroundColour("White")
-        panelNine = wx.Panel(self, pos=((0,416)), size=((618,50)))
-        panelNine.SetBackgroundColour("White")
-        panelTen = wx.Panel(self, pos=((0,468)), size=((618,50)))
-        panelTen.SetBackgroundColour("White")
+#        panelTwo = wx.Panel(self, pos=((0,52)), size=((618,50)))
+#        panelTwo.SetBackgroundColour("White")
+#        panelThree = wx.Panel(self, pos=((0,104)), size=((618,50)))
+#        panelThree.SetBackgroundColour("White")
+#        panelFour = wx.Panel(self, pos=((0,156)), size=((618,50)))
+#        panelFour.SetBackgroundColour("White")
+#        panelFive = wx.Panel(self, pos=((0,208)), size=((618,50)))
+#        panelFive.SetBackgroundColour("White")
+#        panelSix = wx.Panel(self, pos=((0,260)), size=((618,50)))
+#        panelSix.SetBackgroundColour("White")
+#        panelSeven = wx.Panel(self, pos=((0,312)), size=((618,50)))
+#        panelSeven.SetBackgroundColour("White")
+#        panelEight = wx.Panel(self, pos=((0,364)), size=((618,50)))
+#        panelEight.SetBackgroundColour("White")
+#        panelNine = wx.Panel(self, pos=((0,416)), size=((618,50)))
+#        panelNine.SetBackgroundColour("White")
+#        panelTen = wx.Panel(self, pos=((0,468)), size=((618,50)))
+#        panelTen.SetBackgroundColour("White")
 
-#        mondayOne = wx.StaticText(panelTwo, -1, "ECE-450\nECE A123", pos=(110,60))
-#        mondayOne.SetForegroundColour("Black")
+        hourOne = wx.StaticText(panelOne, -1, "8:30-9:30", pos=(25, 70))
+        hourOne.SetForegroundColour("Black")
+        hourOne.SetBackgroundColour("Grey")
 
         greyPanel = wx.Panel(self, pos=(0,0), size=(100,575))
         greyPanel.SetBackgroundColour("Grey")
@@ -84,9 +85,9 @@ class mainFrame(wx.Frame):
             windowTwo = wx.MessageDialog(self, "4 hours in class\n5 hours to study/eat")
             windowTwo.ShowModal()
 
-        button = wx.Button(panelOne, -1, "Weekly\nBreakdown" , pos=(0,0), size=(98,50))
-        button.Bind(wx.EVT_BUTTON, onButtonWeek)
-        button.SetBackgroundColour("Red")
+        buttonWeek = wx.Button(panelOne, -1, "Weekly\nBreakdown" , pos=(0,0), size=(98,50))
+        buttonWeek.Bind(wx.EVT_BUTTON, onButtonWeek)
+        buttonWeek.SetBackgroundColour("Red")
         button = wx.Button(panelOne, -1, "Monday", pos=(102,0), size=(98,50))
         button.Bind(wx.EVT_BUTTON, onButton)
         button.SetBackgroundColour("Grey")
@@ -104,6 +105,16 @@ class mainFrame(wx.Frame):
         buttonFive.SetBackgroundColour("Grey")
 
 ######################################################################
+
+        def onButtonDays(event):
+            windowTwo=wx.MessageDialog(self, "ECE 330\nECE A123")
+            windowTwo.ShowModal()
+
+        dayButton = wx.Button(panelOne, -1, "ECE 330\nECE A123", pos=(102,52), size=(98,50))
+        dayButton.Bind(wx.EVT_BUTTON, onButtonDays)
+        dayButton.SetBackgroundColour("Green")
+
+#######################################################################
 
         mainMenu = wx.MenuBar()
 
