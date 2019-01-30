@@ -10,6 +10,28 @@ class mainFrame(wx.Frame):
 
     def GUI(self):
 
+###################################################################
+# Area for creating functions for Buttons for GUI function
+###################################################################
+
+        def onButtonWeek(event):
+            print("Button Pressed")
+            windowTwo = wx.MessageDialog(self, """20 hours in class\n25 hours to study/eat
+                                            \nWith 10 classes in 5 days""")
+            windowTwo.ShowModal()
+
+        def onButton(event):
+            print("Button Pressed")
+            windowTwo = wx.MessageDialog(self, "4 hours in class\n5 hours to study/eat")
+            windowTwo.ShowModal()
+
+        def onButtonDays(event):
+            windowTwo=wx.MessageDialog(self, "ECE 330\nECE A123")
+            windowTwo.ShowModal()
+
+####################################################################
+# Area to create panels
+####################################################################
 
         panelOne = wx.Panel(self, pos=((0,0)), size=((618,575)))
         panelOne.SetBackgroundColour("White")
@@ -73,17 +95,8 @@ class mainFrame(wx.Frame):
         horPanelNine.SetBackgroundColour("Black")
 
 ######################################################################
-
-        def onButtonWeek(event):
-            print("Button Pressed")
-            windowTwo = wx.MessageDialog(self, """20 hours in class\n25 hours to study/eat
-                                            \nWith 10 classes in 5 days""")
-            windowTwo.ShowModal()
-
-        def onButton(event):
-            print("Button Pressed")
-            windowTwo = wx.MessageDialog(self, "4 hours in class\n5 hours to study/eat")
-            windowTwo.ShowModal()
+# Area to create the buttons for the top section of the schedule (week/day name
+######################################################################
 
         buttonWeek = wx.Button(panelOne, -1, "Weekly\nBreakdown" , pos=(0,0), size=(98,50))
         buttonWeek.Bind(wx.EVT_BUTTON, onButtonWeek)
@@ -105,15 +118,15 @@ class mainFrame(wx.Frame):
         buttonFive.SetBackgroundColour("Grey")
 
 ######################################################################
-
-        def onButtonDays(event):
-            windowTwo=wx.MessageDialog(self, "ECE 330\nECE A123")
-            windowTwo.ShowModal()
+# Section for the function for the day buttons and the area to create them
+######################################################################
 
         dayButton = wx.Button(panelOne, -1, "ECE 330\nECE A123", pos=(102,52), size=(98,50))
         dayButton.Bind(wx.EVT_BUTTON, onButtonDays)
         dayButton.SetBackgroundColour("Green")
 
+#######################################################################
+# area for creating menus and attaching buttons the those menus
 #######################################################################
 
         mainMenu = wx.MenuBar()
@@ -131,12 +144,16 @@ class mainFrame(wx.Frame):
 
         self.SetMenuBar(mainMenu)
 
-##################################################################
+###################################################################
+# Area to bind button to their functions
+###################################################################
 
         self.Bind(wx.EVT_MENU, self.quit, exitButton)
         self.Bind(wx.EVT_MENU, self.about, aboutButton)
 
-##################################################################
+####################################################################
+# Area for creating functions for Buttons for the class of mainFrame
+####################################################################
 
     def about(self, e):
         message = wx.MessageDialog(self, "Timelines, saving the day")
@@ -152,11 +169,7 @@ def main():
     window = mainFrame(None)
     window.Show()
     window.Centre()
-
     app.MainLoop()
-
-
-
 
 
 main()
