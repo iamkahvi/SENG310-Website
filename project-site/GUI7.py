@@ -80,9 +80,6 @@ class secondFrame(wx.Frame):
 
 class mainFrame(wx.Frame):
 
-    x=0
-    y=0
-
     def __init__(self, *args, **kwargs):
         super(mainFrame, self).__init__(*args, **kwargs)
 
@@ -108,6 +105,8 @@ class mainFrame(wx.Frame):
         print("Button Pressed")
         windowTwo = secondFrame()
         windowTwo.Show()
+
+
 
     ###################################################################
     # This function has all the cotents of the frame
@@ -151,6 +150,10 @@ class mainFrame(wx.Frame):
         # Area to create panels
         ####################################################################
 
+
+
+
+        global panelOne
         panelOne = wx.Panel(self, pos=((0,0)), size=((618,575)))
         panelOne.SetBackgroundColour("White")
 #        panelTwo = wx.Panel(self, pos=((0,52)), size=((618,50)))
@@ -235,12 +238,12 @@ class mainFrame(wx.Frame):
         # Section the day buttons and the area to create them
         ######################################################################
 
-        dayButton = wx.Button(panelOne, -1, "ECE 330\nECE A123", pos=(102,52), size=(98,50))
-        dayButton.Bind(wx.EVT_BUTTON, self.onButtonDays)
-        dayButton.SetBackgroundColour("Green")
-        dayButtonTwo = wx.Button(panelOne, -1, "SENG-310\nELL A168", pos=(202,139), size=(98,67))
-        dayButtonTwo.Bind(wx.EVT_BUTTON, self.onButtonDays)
-        dayButtonTwo.SetBackgroundColour("Green")
+        #dayButton = wx.Button(panelOne, -1, "ECE 330\nECE A123", pos=(102,52), size=(98,50))
+        #dayButton.Bind(wx.EVT_BUTTON, self.onButtonDays)
+        #dayButton.SetBackgroundColour("Green")
+        #dayButtonTwo = wx.Button(panelOne, -1, "SENG-310\nELL A168", pos=(202,139), size=(98,67))
+        #dayButtonTwo.Bind(wx.EVT_BUTTON, self.onButtonDays)
+        #dayButtonTwo.SetBackgroundColour("Green")
 
         ###################################################################
         # Area for static text in function GUI
@@ -278,28 +281,1939 @@ class mainFrame(wx.Frame):
     # Area for creating functions for Buttons for the class of mainFrame
     ####################################################################
 
-    def about(self, e):
+    def about(self, event):
         message = wx.MessageDialog(self, "About Timelines\n at Timelines, we are always saving the day")
         message.ShowModal()
 
 
-    def quit(self, e):
+    def quit(self, event):
         self.Close()
 
-    def placeEvent(self):
-        buttonAdd = wx.Button(panelOne, -1, eventName, pos=(x,y), size=(98,50))
-        self.Bind(wx.EVT_MENU, self.placeEvent, buttonAdd)
-        buttonAdd.SetBackgroundColour("Green")
+#########################################################################################################################################
+#########################################################################################################################################
+# This giant function below adds events to the calendar
+#########################################################################################################################################
+#########################################################################################################################################
 
-    def addE(self, e):
+
+    def addE(self, event):
+        global panelOne
         eventName = wx.TextEntryDialog(None, "What is the name of the event", "Event Name")
-        eventName.ShowModal()
-        eventTime = wx.TextEntryDialog(None, "What is the time of the event", "Event Time")
-        eventTime.ShowModal()
-        if eventTime == "9:30-10:20":
+        if eventName.ShowModal() == wx.ID_OK:
+            name = eventName.GetValue()
+
+        eventDay = wx.SingleChoiceDialog(None, "What is the day of the event", "Event Day",
+        ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])
+        if eventDay.ShowModal() == wx.ID_OK:
+            day = eventDay.GetStringSelection()
+
+        eventStartTime = wx.SingleChoiceDialog(None, "What is the start time of the event?", "Event Start Time",
+         ["8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+         "15:00", "16:00", "16:30", "17:00"])
+        if eventStartTime.ShowModal() == wx.ID_OK:
+            eStartTime = eventStartTime.GetStringSelection()
+
+        eventTimeLength = wx.SingleChoiceDialog(None, "What is the start time of the event?", "Event Start Time",
+         ["30 minutes", "60 minutes", "90 minutes", "120 minutes", "150 minutes", "180 minutes", "210 minutes", "240 minutes"])
+        if eventTimeLength.ShowModal() == wx.ID_OK:
+            length = eventTimeLength.GetStringSelection()
+
+        ###############################################
+        # start of Monday event placement
+        ###############################################
+        if eStartTime == "8:30" and day == "Monday":
+            x = 102
+            y = 52
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:00" and day == "Monday":
+            x = 102
+            y = 78
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:30" and day == "Monday":
             x = 102
             y = 104
-        self.placeEvent()
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:00" and day == "Monday":
+            x = 102
+            y = 130
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:30" and day == "Monday":
+            x = 102
+            y = 156
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:00" and day == "Monday":
+            x = 102
+            y = 182
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:30" and day == "Monday":
+            x = 102
+            y = 208
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:00" and day == "Monday":
+            x = 102
+            y = 234
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:30" and day == "Monday":
+            x = 102
+            y = 260
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:00" and day == "Monday":
+            x = 102
+            y = 286
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:30" and day == "Monday":
+            x = 102
+            y = 312
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "14:00" and day == "Monday":
+            x = 102
+            y = 338
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            else:
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "14:30" and day == "Monday":
+            x = 102
+            y = 364
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            else:
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:00" and day == "Monday":
+            x = 102
+            y = 390
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            else:
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:30" and day == "Monday":
+            x = 102
+            y = 416
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            else:
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:00" and day == "Monday":
+            x = 102
+            y = 442
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            else:
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:30" and day == "Monday":
+            x = 102
+            y = 468
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            else:
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "17:00" and day == "Monday":
+            x = 102
+            y = 494
+            if length == "30 minutes":
+                sizey = 25
+            else:
+            #elif length =="60 minutes":
+            #    sizey = 50
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+                #sizey = 206
+                print("Too long for this calendar")
+
+        ###############################################
+        # start of Tuesday event placement
+        ###############################################
+        if eStartTime == "8:30" and day == "Tuesday":
+            x = 202
+            y = 52
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:00" and day == "Tuesday":
+            x = 202
+            y = 78
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:30" and day == "Tuesday":
+            x = 202
+            y = 104
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:00" and day == "Tuesday":
+            x = 202
+            y = 130
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:30" and day == "Tuesday":
+            x = 202
+            y = 156
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:00" and day == "Tuesday":
+            x = 202
+            y = 182
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:30" and day == "Tuesday":
+            x = 202
+            y = 208
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:00" and day == "Tuesday":
+            x = 202
+            y = 234
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:30" and day == "Tuesday":
+            x = 202
+            y = 260
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:00" and day == "Tuesday":
+            x = 202
+            y = 286
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:30" and day == "Tuesday":
+            x = 202
+            y = 312
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "14:00" and day == "Tuesday":
+            x = 202
+            y = 338
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            else:
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "14:30" and day == "Tuesday":
+            x = 202
+            y = 364
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            else:
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:00" and day == "Tuesday":
+            x = 202
+            y = 390
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            else:
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:30" and day == "Tuesday":
+            x = 202
+            y = 416
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            else:
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:00" and day == "Tuesday":
+            x = 202
+            y = 442
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            else:
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:30" and day == "Tuesday":
+            x = 202
+            y = 468
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            else:
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "17:00" and day == "Tuesday":
+            x = 202
+            y = 494
+            if length == "30 minutes":
+                sizey = 25
+            else:
+            #elif length =="60 minutes":
+            #    sizey = 50
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 104
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+                #sizey = 206
+                print("Too long for this calendar")
+
+        ###############################################
+        # start of Wednesday event placement
+        ###############################################
+        if eStartTime == "8:30" and day == "Wednesday":
+            x = 302
+            y = 52
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:00" and day == "Wednesday":
+            x = 302
+            y = 78
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:30" and day == "Wednesday":
+            x = 302
+            y = 104
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:00" and day == "Wednesday":
+            x = 302
+            y = 130
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:30" and day == "Wednesday":
+            x = 302
+            y = 156
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:00" and day == "Wednesday":
+            x = 302
+            y = 182
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:30" and day == "Wednesday":
+            x = 302
+            y = 208
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:00" and day == "Wednesday":
+            x = 302
+            y = 234
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:30" and day == "Wednesday":
+            x = 302
+            y = 260
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:00" and day == "Wednesday":
+            x = 302
+            y = 286
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:30" and day == "Wednesday":
+            x = 302
+            y = 312
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "14:00" and day == "Wednesday":
+            x = 302
+            y = 338
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            else:
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "14:30" and day == "Wednesday":
+            x = 302
+            y = 364
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            else:
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:00" and day == "Wednesday":
+            x = 302
+            y = 390
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            else:
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:30" and day == "Wednesday":
+            x = 302
+            y = 416
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            else:
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:00" and day == "Wednesday":
+            x = 302
+            y = 442
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            else:
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:30" and day == "Wednesday":
+            x = 302
+            y = 468
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            else:
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "17:00" and day == "Wednesday":
+            x = 302
+            y = 494
+            if length == "30 minutes":
+                sizey = 25
+            else:
+            #elif length =="60 minutes":
+            #    sizey = 50
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 104
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+                #sizey = 206
+                print("Too long for this calendar")
+
+        ###############################################
+        # start of Thursday event placement
+        ###############################################
+        if eStartTime == "8:30" and day == "Thursday":
+            x = 402
+            y = 52
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:00" and day == "Thursday":
+            x = 402
+            y = 78
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:30" and day == "Thursday":
+            x = 402
+            y = 104
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:00" and day == "Thursday":
+            x = 402
+            y = 130
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:30" and day == "Thursday":
+            x = 402
+            y = 156
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:00" and day == "Thursday":
+            x = 402
+            y = 182
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:30" and day == "Thursday":
+            x = 402
+            y = 208
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:00" and day == "Thursday":
+            x = 402
+            y = 234
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:30" and day == "Thursday":
+            x = 402
+            y = 260
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:00" and day == "Thursday":
+            x = 402
+            y = 286
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:30" and day == "Thursday":
+            x = 402
+            y = 312
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "14:00" and day == "Thursday":
+            x = 402
+            y = 338
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            else:
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "14:30" and day == "Thursday":
+            x = 402
+            y = 364
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            else:
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:00" and day == "Thursday":
+            x = 402
+            y = 390
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            else:
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:30" and day == "Thursday":
+            x = 402
+            y = 416
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            else:
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:00" and day == "Thursday":
+            x = 402
+            y = 442
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            else:
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:30" and day == "Thursday":
+            x = 402
+            y = 468
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            else:
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "17:00" and day == "Thursday":
+            x = 402
+            y = 494
+            if length == "30 minutes":
+                sizey = 25
+            else:
+            #elif length =="60 minutes":
+            #    sizey = 50
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 104
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+                #sizey = 206
+                print("Too long for this calendar")
+
+        ###############################################
+        # start of Friday event placement
+        ###############################################
+        if eStartTime == "8:30" and day == "Friday":
+            x = 502
+            y = 52
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:00" and day == "Friday":
+            x = 502
+            y = 78
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "9:30" and day == "Friday":
+            x = 502
+            y = 104
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:00" and day == "Friday":
+            x = 502
+            y = 130
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "10:30" and day == "Friday":
+            x = 502
+            y = 156
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:00" and day == "Friday":
+            x = 502
+            y = 182
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "11:30" and day == "Friday":
+            x = 502
+            y = 208
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:00" and day == "Friday":
+            x = 502
+            y = 234
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "12:30" and day == "Friday":
+            x = 502
+            y = 260
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:00" and day == "Friday":
+            x = 502
+            y = 286
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "13:30" and day == "Friday":
+            x = 502
+            y = 312
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            elif length == "240 minutes":
+                sizey = 206
+
+        elif eStartTime == "14:00" and day == "Friday":
+            x = 502
+            y = 338
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            elif length == "210 minutes":
+                sizey = 181
+            else:
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "14:30" and day == "Friday":
+            x = 502
+            y = 364
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            elif length == "180 minutes":
+                sizey = 154
+            else:
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:00" and day == "Friday":
+            x = 502
+            y = 390
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            elif length == "150 minutes":
+                sizey = 129
+            else:
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "15:30" and day == "Friday":
+            x = 502
+            y = 416
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            elif length == "120 minutes":
+                sizey = 102
+            else:
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:00" and day == "Friday":
+            x = 502
+            y = 442
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            elif length == "90 minutes":
+                sizey = 77
+            else:
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "16:30" and day == "Friday":
+            x = 502
+            y = 468
+            if length == "30 minutes":
+                sizey = 25
+            elif length =="60 minutes":
+                sizey = 50
+            else:
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 102
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+            #    sizey = 206
+                print("Too long for this calendar")
+
+        elif eStartTime == "17:00" and day == "Friday":
+            x = 502
+            y = 494
+            if length == "30 minutes":
+                sizey = 25
+            else:
+            #elif length =="60 minutes":
+            #    sizey = 50
+            #elif length == "90 minutes":
+            #    sizey = 77
+            #elif length == "120 minutes":
+            #    sizey = 104
+            #elif length == "150 minutes":
+            #    sizey = 129
+            #elif length == "180 minutes":
+            #    sizey = 154
+            #elif length == "210 minutes":
+            #    sizey = 181
+            #elif length == "240 minutes":
+                #sizey = 206
+                print("Too long for this calendar")
+
+        self.placeEvent(wx.EVT_MENU, name, x, y, sizey)
+
+#################################################################################################################################################
+#################################################################################################################################################
+
+    def placeEvent(self, event, Name, X, Y, sizeY):
+        print("x = ", X, "y= ", Y)
+        buttonAdd = wx.Button(panelOne, -1, Name, pos=(X,Y), size=(98, sizeY))
+        self.Bind(wx.EVT_MENU, self.placeEvent, buttonAdd)
+        buttonAdd.SetBackgroundColour("Green")
+        self.Bind(wx.EVT_BUTTON, self.onButtonDays, buttonAdd)
 
 
 def main():
